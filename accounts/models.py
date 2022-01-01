@@ -12,7 +12,7 @@ class Account(models.Model):
 
     def save(self, *args, **kwargs):
         #Image Resize
-        super().save(**args, **kwargs)
+        super().save(*args, **kwargs)
         if self.photo:
             img = Image.open(self.photo.path)
             if img.height > 600 or img.width > 600:
