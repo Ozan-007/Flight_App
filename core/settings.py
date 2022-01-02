@@ -44,6 +44,12 @@ INSTALLED_APPS = [
     # for dj-rest-auth
     'rest_framework.authtoken',
     'dj_rest_auth',
+        # for dj-rest-auth registration
+        'django.contrib.sites',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'dj_rest_auth.registration',
     #my-apps
     'accounts',
 ]
@@ -133,3 +139,5 @@ MEDIA_ROOT = 'uploads' # This one will create a file named uploads and images wi
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_ID = 1 # For dj-rest-auth registration
