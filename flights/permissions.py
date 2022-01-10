@@ -1,12 +1,8 @@
 from rest_framework import permissions
 
-SAFE_METHODS = ('GET', 'HEAD', 'OPTIONS')
-
-
 class IsStuffOrReadOnly(permissions.IsAdminUser):
-    def has_permission(self, request, view):
-        return bool(
-            request.method in SAFE_METHODS or
-            request.user and
-            request.user.is_staff
-                    )
+   def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+           return True
+        else:
+           return bool(request.user.is_staff)
