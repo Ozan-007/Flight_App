@@ -1,7 +1,12 @@
 from django.urls import path
+from rest_framework import routers
+from flights.views import FlightListView
 
-from flights.views import FlightView
+router = routers.DefaultRouter()
+router.register('flights', FlightListView) 
 
 urlpatterns = [
-    path('flights/', FlightView.as_view(), name='Flight List'),
+
 ]
+
+urlpatterns += router.urls
