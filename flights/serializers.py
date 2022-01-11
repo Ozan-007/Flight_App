@@ -25,4 +25,15 @@ class ReservationSerializer(serializers.ModelSerializer):
             model = Reservation
             fields = ("id", "flight_id","passenger","user","user_id")
 
+        #Overriding create method
+        def create(self, validated_data):
+            passenger_data = validated_data.pop("passenger")
+            validated_data["user_id"] = self.context['request'].user.id
+            reservation = Reservation.objects.create(**validated_data)
+            for passenger in passenger_data:
+                reservation.passenger.add(Passenger.objects.create(**passenger))
+            reservation.save()
+
+            return reservation
+
 
