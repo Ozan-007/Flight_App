@@ -10,14 +10,14 @@ class Flight(models.Model):
     estimatedTimeofDeparture = models.TimeField()
 
     def __str__(self):
-        return self.departure_city + " " + self.arrival_city + " " + self.flight_number 
+        return self.departure_city + " " + self.arrival_city + " " + f"{self.flight_number}" 
 
 
 class Passenger(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     email = models.EmailField()
-    phone_number = models.IntegerField
+    phone_number = models.IntegerField(null=True)
     updated_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add= True)
 
