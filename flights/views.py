@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import permissions
 
-from flights.serializers import FlightSerializer
-from .models import Flight
+from flights.serializers import FlightSerializer, ReservationSerializer
+from .models import Flight, Reservation
 from rest_framework.permissions import IsAdminUser
 from rest_framework import generics, viewsets
 from .permissions import IsStuffOrReadOnly
@@ -12,3 +12,8 @@ class FlightListView(viewsets.ModelViewSet):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
     permission_classes = (IsStuffOrReadOnly,)
+
+
+class ReservationView(viewsets.ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
